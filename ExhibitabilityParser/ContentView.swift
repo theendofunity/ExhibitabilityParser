@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    private let viewModel = ViewModel()
+    @State private var showingPicker = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Button("Add file") {
+                showingPicker = true
+            }
         }
-        .padding()
+        .sheet(isPresented: $showingPicker) {
+            DocumentPicker()
+        }
     }
 }
 
