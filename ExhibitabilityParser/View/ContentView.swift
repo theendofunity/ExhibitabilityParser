@@ -16,7 +16,10 @@ struct ContentView: View {
             Button("Add file") {
                 showingPicker = true
             }
+            .padding()
+            .buttonStyle(.bordered)
         }
+        
         .sheet(isPresented: $showingPicker) {
             DocumentPicker(viewModel: pickerViewModel)
         }
