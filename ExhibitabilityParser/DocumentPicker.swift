@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct DocumentPicker: UIViewControllerRepresentable {
+    private let viewModel: DocumentPickerViewModel
+    
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         // empry
     }
     
-    let viewModel = DocumentPickerViewModel()
+    init(viewModel: DocumentPickerViewModel) {
+        self.viewModel = viewModel
+    }
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let viewController = UIDocumentPickerViewController(forOpeningContentTypes: [.text])
@@ -22,7 +26,10 @@ struct DocumentPicker: UIViewControllerRepresentable {
     }
 }
 
-final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate {
+final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate, ObservableObject {
+    @Published var dataParsed = false
+    var data: FormattedDataViewModel?
+    
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         print(urls)
         
@@ -32,6 +39,12 @@ final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate {
             return
         }
         
-        Parser().parse(file: url)
+        let data = Parser().parse(file: url)
+        save(data: data)
+    }
+    
+    func save(data: [FormattedData]) {
+        self.data = .init(data: data)
+        dataParsed = true
     }
 }

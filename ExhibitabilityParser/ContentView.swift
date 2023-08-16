@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let viewModel = ViewModel()
     @State private var showingPicker = false
+    @ObservedObject private var pickerViewModel = DocumentPickerViewModel()
     
     var body: some View {
         VStack {
@@ -18,7 +18,11 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $showingPicker) {
-            DocumentPicker()
+            DocumentPicker(viewModel: pickerViewModel)
+        }
+        
+        .sheet(isPresented: $pickerViewModel.dataParsed) {
+            DataPreview(data: pickerViewModel.data)
         }
     }
 }

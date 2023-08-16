@@ -14,6 +14,8 @@
 		D8AB36742A8560FF0075F39A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB36732A8560FF0075F39A /* ViewModel.swift */; };
 		D8AB36762A8562090075F39A /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB36752A8562090075F39A /* DocumentPicker.swift */; };
 		D8AB36782A8566000075F39A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB36772A8566000075F39A /* Parser.swift */; };
+		D8ADE2012A8CF2DE00B7E3DE /* FormattedDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ADE2002A8CF2DE00B7E3DE /* FormattedDataViewModel.swift */; };
+		D8D8A0552A8BE1840077AC1E /* DataPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D8A0542A8BE1840077AC1E /* DataPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,9 @@
 		D8AB36732A8560FF0075F39A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D8AB36752A8562090075F39A /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		D8AB36772A8566000075F39A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		D8ADE2002A8CF2DE00B7E3DE /* FormattedDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedDataViewModel.swift; sourceTree = "<group>"; };
+		D8D8A0542A8BE1840077AC1E /* DataPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPreview.swift; sourceTree = "<group>"; };
+		D8E41C972A86B9D600628BF9 /* ExhibitabilityParser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExhibitabilityParser.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +62,11 @@
 		D8AB36642A8560EA0075F39A /* ExhibitabilityParser */ = {
 			isa = PBXGroup;
 			children = (
+				D8E41C972A86B9D600628BF9 /* ExhibitabilityParser.entitlements */,
 				D8AB36652A8560EA0075F39A /* ExhibitabilityParserApp.swift */,
 				D8AB36672A8560EA0075F39A /* ContentView.swift */,
+				D8ADE2002A8CF2DE00B7E3DE /* FormattedDataViewModel.swift */,
+				D8D8A0542A8BE1840077AC1E /* DataPreview.swift */,
 				D8AB36692A8560EB0075F39A /* Assets.xcassets */,
 				D8AB366B2A8560EB0075F39A /* Preview Content */,
 				D8AB36732A8560FF0075F39A /* ViewModel.swift */,
@@ -146,7 +154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D8A0552A8BE1840077AC1E /* DataPreview.swift in Sources */,
 				D8AB36762A8562090075F39A /* DocumentPicker.swift in Sources */,
+				D8ADE2012A8CF2DE00B7E3DE /* FormattedDataViewModel.swift in Sources */,
 				D8AB36682A8560EA0075F39A /* ContentView.swift in Sources */,
 				D8AB36782A8566000075F39A /* Parser.swift in Sources */,
 				D8AB36742A8560FF0075F39A /* ViewModel.swift in Sources */,
@@ -276,6 +286,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExhibitabilityParser/ExhibitabilityParser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExhibitabilityParser/Preview Content\"";
@@ -305,6 +316,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExhibitabilityParser/ExhibitabilityParser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExhibitabilityParser/Preview Content\"";

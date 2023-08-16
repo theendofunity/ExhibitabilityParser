@@ -11,10 +11,10 @@ typealias Indexes = [Column: Int]
 
 final class Parser {
     
-    func parse(file: URL) {
+    func parse(file: URL) -> [FormattedData] {
         guard file.startAccessingSecurityScopedResource(),
               let content = try? String(contentsOf: file) else {
-            return
+            return []
         }
         
         var rows = content.components(separatedBy: "\n")
@@ -30,7 +30,7 @@ final class Parser {
             .map { $0.components(separatedBy: ";") }
             .compactMap { FormattedData(data: $0, indexes: indexes) }
         
-        print(data)
+        return data
     }
     
     func getIndexes(from header: [String]) -> Indexes {
@@ -63,6 +63,7 @@ final class FormattedData {
     let developTime: Float
     let projectPlan: Float
     let date: String
+    let link: String
     
     init?(data: [String], indexes: Indexes) {
         guard let numberIndex = indexes[.number],
@@ -78,7 +79,24 @@ final class FormattedData {
         self.title = data[titleIndex]
         self.spendTime = (Float(data[spendTimeIndex]) ?? .zero) / 3600
         self.developTime = (Float(data[developTimeIndex]) ?? .zero) / 3600
-        self.projectPlan = (Float(data[projectPlanIndex].trimmingCharacters(in: .controlCharacters).dropLast())) ?? .zero
+        self.projectPlan = (Float(data[projectPlanIndex].trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
         self.date = data[dateIndex]
+        self.link = .jiraUrl + number
     }
+    
+    func getString() -> String {
+        var array: [String] = []
+        array.append(number)
+        array.append(title)
+        array.append(link)
+        array.append("\(spendTime)")
+        array.append("\(developTime)")
+        array.append("\(projectPlan)")
+
+        return array.joined(separator: ";")
+    }
+}
+
+private extension String {
+    static let jiraUrl: String = "https://jira.touchin.ru/browse/"
 }
