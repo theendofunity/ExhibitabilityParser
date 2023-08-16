@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D86A39DA2A8CFA79006BE648 /* SaveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */; };
 		D8AB36662A8560EA0075F39A /* ExhibitabilityParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB36652A8560EA0075F39A /* ExhibitabilityParserApp.swift */; };
 		D8AB36682A8560EA0075F39A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB36672A8560EA0075F39A /* ContentView.swift */; };
 		D8AB366A2A8560EB0075F39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AB36692A8560EB0075F39A /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewModel.swift; sourceTree = "<group>"; };
 		D8AB36622A8560EA0075F39A /* ExhibitabilityParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExhibitabilityParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AB36652A8560EA0075F39A /* ExhibitabilityParserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitabilityParserApp.swift; sourceTree = "<group>"; };
 		D8AB36672A8560EA0075F39A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				D8AB36732A8560FF0075F39A /* ViewModel.swift */,
 				D8AB36752A8562090075F39A /* DocumentPicker.swift */,
 				D8AB36772A8566000075F39A /* Parser.swift */,
+				D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */,
 			);
 			path = ExhibitabilityParser;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8D8A0552A8BE1840077AC1E /* DataPreview.swift in Sources */,
+				D86A39DA2A8CFA79006BE648 /* SaveViewModel.swift in Sources */,
 				D8AB36762A8562090075F39A /* DocumentPicker.swift in Sources */,
 				D8ADE2012A8CF2DE00B7E3DE /* FormattedDataViewModel.swift in Sources */,
 				D8AB36682A8560EA0075F39A /* ContentView.swift in Sources */,

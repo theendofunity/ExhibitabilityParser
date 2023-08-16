@@ -9,18 +9,20 @@ import SwiftUI
 
 struct DataPreview: View {
     let data: FormattedDataViewModel?
+    private let saveViewModel = SaveViewModel()
     
     init(data: FormattedDataViewModel?) {
         self.data = data
     }
     
     var body: some View {
+        let data = data?.output() ?? "no data"
         VStack {
-            Text(verbatim: data?.output() ?? "no data")
+            Text(verbatim: data)
                 .padding(.vertical)
             Spacer()
             Button("Save") {
-                
+                saveViewModel.save(data: data)
             }
         }
     }
