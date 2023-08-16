@@ -16,4 +16,6 @@ enum Column: String {
     case developTime = "Первоначальная оценка"
     case projectPlan = "Пользовательское поле (Project plan)"
     case date = "Дата решения"
+    case type = "Тип задачи"
+    case project = "Название проекта"
 }

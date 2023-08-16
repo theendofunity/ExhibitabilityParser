@@ -26,7 +26,7 @@ struct DataPreview: View {
             }
         }
         
-        .alert("Documents saved", isPresented: $saveViewModel.isSaved) {
+        .alert("Document saved", isPresented: $saveViewModel.isSaved) {
             Button("Share") {
                 showShareSheet(with: [saveViewModel.fileUrl])
             }

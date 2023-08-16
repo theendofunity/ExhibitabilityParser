@@ -8,6 +8,12 @@
 import Foundation
 
 final class FormattedData {
+    enum TaskType: String {
+        case task = "Задача"
+        case myBug = "Свой баг"
+        case strangerBug = "Чужой баг"
+    }
+    
     let number: String
     let title: String
     let spendTime: Float
@@ -15,6 +21,8 @@ final class FormattedData {
     let projectPlan: Float
     let date: String
     let link: String
+    let projectName: String
+    let taskType: TaskType
     
     init?(data: [String], indexes: Indexes) {
         guard let numberIndex = indexes[.number],
@@ -22,7 +30,9 @@ final class FormattedData {
               let spendTimeIndex = indexes[.spendedTime],
               let developTimeIndex = indexes[.developTime],
               let projectPlanIndex = indexes[.projectPlan],
-              let dateIndex = indexes[.date] else {
+              let dateIndex = indexes[.date],
+              let projectName = indexes[.project],
+              let taskType = indexes[.type] else {
             return nil
         }
         
@@ -33,16 +43,19 @@ final class FormattedData {
         self.projectPlan = (Float(data[projectPlanIndex].trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
         self.date = data[dateIndex]
         self.link = .jiraUrl + number
+        self.projectName = data[projectName]
+        self.taskType = TaskType(rawValue: data[taskType]) ?? .strangerBug
     }
     
     func getString() -> String {
         var array: [String] = []
-        array.append(number)
+        array.append(projectName)
+        array.append(taskType.rawValue)
         array.append(title)
         array.append(link)
-        array.append("\(spendTime)")
         array.append("\(developTime)")
         array.append("\(projectPlan)")
+        array.append("\(spendTime)")
 
         return array.joined(separator: ";")
     }
