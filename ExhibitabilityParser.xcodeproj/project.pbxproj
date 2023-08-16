@@ -46,10 +46,6 @@
 		D8AB36592A8560EA0075F39A = {
 			isa = PBXGroup;
 			children = (
-				D8E41C972A86B9D600628BF9 /* ExhibitabilityParser.entitlements */,
-				D8AB36652A8560EA0075F39A /* ExhibitabilityParserApp.swift */,
-				D8AB36692A8560EB0075F39A /* Assets.xcassets */,
-				D8AB366B2A8560EB0075F39A /* Preview Content */,
 				D8AB36642A8560EA0075F39A /* ExhibitabilityParser */,
 				D8AB36632A8560EA0075F39A /* Products */,
 			);
@@ -66,9 +62,16 @@
 		D8AB36642A8560EA0075F39A /* ExhibitabilityParser */ = {
 			isa = PBXGroup;
 			children = (
-				D8B533992A8CF5C9004C8576 /* Services */,
-				D8B533982A8CF5B5004C8576 /* ViewModel */,
-				D8B533972A8CF59A004C8576 /* View */,
+				D8E41C972A86B9D600628BF9 /* ExhibitabilityParser.entitlements */,
+				D8AB36652A8560EA0075F39A /* ExhibitabilityParserApp.swift */,
+				D8AB36672A8560EA0075F39A /* ContentView.swift */,
+				D8ADE2002A8CF2DE00B7E3DE /* FormattedDataViewModel.swift */,
+				D8D8A0542A8BE1840077AC1E /* DataPreview.swift */,
+				D8AB36692A8560EB0075F39A /* Assets.xcassets */,
+				D8AB366B2A8560EB0075F39A /* Preview Content */,
+				D8AB36732A8560FF0075F39A /* ViewModel.swift */,
+				D8AB36752A8562090075F39A /* DocumentPicker.swift */,
+				D8AB36772A8566000075F39A /* Parser.swift */,
 			);
 			path = ExhibitabilityParser;
 			sourceTree = "<group>";
@@ -79,33 +82,6 @@
 				D8AB366C2A8560EB0075F39A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		D8B533972A8CF59A004C8576 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D8D8A0542A8BE1840077AC1E /* DataPreview.swift */,
-				D8AB36672A8560EA0075F39A /* ContentView.swift */,
-				D8AB36752A8562090075F39A /* DocumentPicker.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D8B533982A8CF5B5004C8576 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				D8ADE2002A8CF2DE00B7E3DE /* FormattedDataViewModel.swift */,
-				D8AB36732A8560FF0075F39A /* ViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D8B533992A8CF5C9004C8576 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D8AB36772A8566000075F39A /* Parser.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
