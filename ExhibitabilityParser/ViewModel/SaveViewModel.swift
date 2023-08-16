@@ -7,7 +7,10 @@
 
 import Foundation
 
-final class SaveViewModel {
+final class SaveViewModel: ObservableObject {
+    @Published var isSaved = false
+    var fileUrl: URL?
+    
     func save(data: String) {
         let url = getDirrectory().appendingPathComponent("testDoc.csv")
         
@@ -16,6 +19,9 @@ final class SaveViewModel {
             
             let input = try String(contentsOf: url)
             print(input)
+            
+            fileUrl = url
+            isSaved = true
         } catch {
             print("WRITING ERROR", error)
         }
