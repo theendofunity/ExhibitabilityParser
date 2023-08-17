@@ -18,4 +18,20 @@ enum Column: String {
     case date = "Дата решения"
     case type = "Тип задачи"
     case project = "Название проекта"
+    case link = "Cсылка"
+    
+    static var header: String {
+        let components: [Column] = [
+            .date,
+            .project,
+            .type,
+            .title,
+            .link,
+            .developTime,
+            .projectPlan,
+            .spendedTime
+        ]
+        
+        return components.map {$0.rawValue}.joined(separator: ";")
+    }
 }

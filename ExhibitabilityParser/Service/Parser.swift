@@ -16,7 +16,7 @@ final class Parser {
             return []
         }
         
-        var rows = content.components(separatedBy: "\n")
+        var rows = content.components(separatedBy: "\n").filter { !$0.isEmpty }
         
         let titles = rows.removeFirst().components(separatedBy: ";").map {
             $0.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -27,8 +27,10 @@ final class Parser {
         
         let data = rows
             .map { $0.components(separatedBy: ";") }
+            .filter { $0.count > indexes.count }
             .compactMap { FormattedData(data: $0, indexes: indexes) }
-        
+//            .sorted { $0.rawDate < $1.rawDate }
+           
         return data
     }
     

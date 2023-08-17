@@ -8,6 +8,7 @@
 import Foundation
 
 final class FormattedData {
+    static var skipped = 0
     enum TaskType: String {
         case task = "Задача"
         case myBug = "Свой баг"
@@ -19,7 +20,8 @@ final class FormattedData {
     let spendTime: Float
     let developTime: Float
     let projectPlan: Float
-    let date: String
+//    let date: String
+    let rawDate: Date
     let link: String
     let projectName: String
     let taskType: TaskType
@@ -41,21 +43,32 @@ final class FormattedData {
         self.spendTime = (Float(data[spendTimeIndex]) ?? .zero) / 3600
         self.developTime = (Float(data[developTimeIndex]) ?? .zero) / 3600
         self.projectPlan = (Float(data[projectPlanIndex].trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
-        self.date = data[dateIndex]
+//        self.date = data[dateIndex]
+        self.rawDate = data[dateIndex].date
         self.link = .jiraUrl + number
         self.projectName = data[projectName]
         self.taskType = TaskType(rawValue: data[taskType]) ?? .strangerBug
+        
+        guard spendTime != .zero else {
+            FormattedData.skipped += 1
+            print("skipped", FormattedData.skipped, title, developTime, projectPlan, spendTime)
+            return nil
+        }
     }
     
     func getString() -> String {
         var array: [String] = []
+        let numberFormatter = NumberFormatter()
+        numberFormatter.decimalSeparator = ","
+        
+        array.append("2023")
         array.append(projectName)
-        array.append(taskType.rawValue)
+        array.append(taskType.rawValue.lowercased())
         array.append(title)
         array.append(link)
-        array.append("\(developTime)")
-        array.append("\(projectPlan)")
-        array.append("\(spendTime)")
+        array.append(numberFormatter.string(from: NSNumber(value: developTime)) ?? "")
+        array.append(numberFormatter.string(from: NSNumber(value: projectPlan)) ?? "")
+        array.append(numberFormatter.string(from:  NSNumber(value: spendTime)) ?? "")
 
         return array.joined(separator: ";")
     }

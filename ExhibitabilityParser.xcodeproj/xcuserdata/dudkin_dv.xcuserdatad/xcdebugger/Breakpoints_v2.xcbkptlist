@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "12F5A7E7-A184-4E59-8994-F41447247C8A"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5DE054D-8AF5-433D-B3CC-CD17585693A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ExhibitabilityParser/Model/FormattedData.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "getString()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "302712BE-B163-435C-85D9-AF27A9619E44"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ExhibitabilityParser/Model/FormattedData.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "init?(data:indexes:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "302712BE-B163-435C-85D9-AF27A9619E44 - 9a4d85b9cf345355"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ExhibitabilityParser.FormattedData.init(data: Swift.Array&lt;Swift.String&gt;, indexes: Swift.Dictionary&lt;ExhibitabilityParser.Column, Swift.Int&gt;) -&gt; Swift.Optional&lt;ExhibitabilityParser.FormattedData&gt;"
+                  moduleName = "ExhibitabilityParser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dudkin_dv/Develop/ExhibitabilityParser/ExhibitabilityParser/Model/FormattedData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1040">
+               </Location>
+               <Location
+                  uuid = "302712BE-B163-435C-85D9-AF27A9619E44 - 9a4d85b9cf345c97"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ExhibitabilityParser.FormattedData.init(data: Swift.Array&lt;Swift.String&gt;, indexes: Swift.Dictionary&lt;ExhibitabilityParser.Column, Swift.Int&gt;) -&gt; Swift.Optional&lt;ExhibitabilityParser.FormattedData&gt;"
+                  moduleName = "ExhibitabilityParser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dudkin_dv/Develop/ExhibitabilityParser/ExhibitabilityParser/Model/FormattedData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "2596">
+               </Location>
+               <Location
+                  uuid = "302712BE-B163-435C-85D9-AF27A9619E44 - 9a4d85b9cf345c97"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ExhibitabilityParser.FormattedData.init(data: Swift.Array&lt;Swift.String&gt;, indexes: Swift.Dictionary&lt;ExhibitabilityParser.Column, Swift.Int&gt;) -&gt; Swift.Optional&lt;ExhibitabilityParser.FormattedData&gt;"
+                  moduleName = "ExhibitabilityParser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dudkin_dv/Develop/ExhibitabilityParser/ExhibitabilityParser/Model/FormattedData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "2700">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

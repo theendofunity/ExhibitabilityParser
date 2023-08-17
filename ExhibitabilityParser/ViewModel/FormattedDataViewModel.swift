@@ -15,6 +15,9 @@ final class FormattedDataViewModel {
     }
     
     func output() -> String {
-        data.map { $0.getString() }.joined(separator: "\n")
+        let header = Column.header + "\n"
+        let rows = data.map { $0.getString() }.joined(separator: "\n")
+        
+        return header + rows
     }
 }
