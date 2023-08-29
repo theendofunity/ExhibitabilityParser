@@ -13,10 +13,6 @@ final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate, Observa
     var data: FormattedDataViewModel?
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print(urls)
-        
-        print("Parsing started")
-        
         guard let url = urls.first else {
             return
         }

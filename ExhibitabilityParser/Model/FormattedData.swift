@@ -6,25 +6,48 @@
 //
 
 import Foundation
+import SwiftUI
 
-final class FormattedData {
+final class FormattedData: ObservableObject {
     static var skipped = 0
-    enum TaskType: String {
+    static var mock: FormattedData {
+        let indexes = Column.allCases.enumerated().map({ (index, column) in
+            (column, index)
+        })
+        var data: [Column : Int] = [:]
+        for index in indexes {
+            data[index.0] = index.1
+        }
+        return .init(data: ["тест", "тестasdadasdasdjashdkjashdkjashdkjahdkajsdhakjsdhkasjdhkajdhakjsdhkajsdhakd","3600","3600","5h","тест","тест","тест","тест"], indexes: data)!
+    }
+    
+    enum TaskType: String, CaseIterable {
         case task = "Задача"
         case myBug = "Свой баг"
         case strangerBug = "Чужой баг"
+        
+        var color: Color {
+            switch self {
+            case .task:
+                return .blue
+            case .strangerBug:
+                return .yellow
+            case .myBug:
+                return .green
+            }
+        }
     }
     
     let number: String
     let title: String
-    let spendTime: Float
-    let developTime: Float
-    let projectPlan: Float
+    var spendTime: Float
+    var developTime: Float
+    var projectPlan: Float
 //    let date: String
     let rawDate: Date
     let link: String
     let projectName: String
-    let taskType: TaskType
+    @Published var taskType: TaskType
     
     init?(data: [String], indexes: Indexes) {
         guard let numberIndex = indexes[.number],
@@ -71,6 +94,10 @@ final class FormattedData {
         array.append(numberFormatter.string(from:  NSNumber(value: spendTime)) ?? "")
 
         return array.joined(separator: ";")
+    }
+    
+    func updateTaskType(_ type: TaskType) {
+        taskType = type
     }
 }
 

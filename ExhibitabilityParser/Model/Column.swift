@@ -9,7 +9,7 @@ import Foundation
 
 typealias Indexes = [Column: Int]
 
-enum Column: String {
+enum Column: String, CaseIterable {
     case number = "Ключ проблемы"
     case title = "Тема"
     case spendedTime = "Затраченное время"

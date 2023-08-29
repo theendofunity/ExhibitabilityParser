@@ -29,7 +29,6 @@ final class Parser {
             .map { $0.components(separatedBy: ";") }
             .filter { $0.count > indexes.count }
             .compactMap { FormattedData(data: $0, indexes: indexes) }
-//            .sorted { $0.rawDate < $1.rawDate }
            
         return data
     }

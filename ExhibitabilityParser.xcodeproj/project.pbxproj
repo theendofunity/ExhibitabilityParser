@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D842A6602A9E84C5007DAB40 /* PreviewItemDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D842A65F2A9E84C5007DAB40 /* PreviewItemDetails.swift */; };
 		D86A39DA2A8CFA79006BE648 /* SaveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */; };
 		D86A39DF2A8CFC2F006BE648 /* DocumentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A39DE2A8CFC2F006BE648 /* DocumentPickerViewModel.swift */; };
 		D86A39E22A8CFC6D006BE648 /* FormattedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A39E12A8CFC6D006BE648 /* FormattedData.swift */; };
 		D86A39E42A8CFC8F006BE648 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A39E32A8CFC8F006BE648 /* Column.swift */; };
+		D8A22D622A9D1DE600488650 /* PreviewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A22D612A9D1DE600488650 /* PreviewItem.swift */; };
 		D8AB36662A8560EA0075F39A /* ExhibitabilityParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB36652A8560EA0075F39A /* ExhibitabilityParserApp.swift */; };
 		D8AB36682A8560EA0075F39A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB36672A8560EA0075F39A /* ContentView.swift */; };
 		D8AB366A2A8560EB0075F39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AB36692A8560EB0075F39A /* Assets.xcassets */; };
@@ -23,10 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D842A65F2A9E84C5007DAB40 /* PreviewItemDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewItemDetails.swift; sourceTree = "<group>"; };
 		D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewModel.swift; sourceTree = "<group>"; };
 		D86A39DE2A8CFC2F006BE648 /* DocumentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewModel.swift; sourceTree = "<group>"; };
 		D86A39E12A8CFC6D006BE648 /* FormattedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedData.swift; sourceTree = "<group>"; };
 		D86A39E32A8CFC8F006BE648 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
+		D8A22D612A9D1DE600488650 /* PreviewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewItem.swift; sourceTree = "<group>"; };
 		D8AB36622A8560EA0075F39A /* ExhibitabilityParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExhibitabilityParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AB36652A8560EA0075F39A /* ExhibitabilityParserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitabilityParserApp.swift; sourceTree = "<group>"; };
 		D8AB36672A8560EA0075F39A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,9 +58,11 @@
 		D86A39DB2A8CFBBA006BE648 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D8AB36672A8560EA0075F39A /* ContentView.swift */,
 				D8D8A0542A8BE1840077AC1E /* DataPreview.swift */,
 				D8AB36752A8562090075F39A /* DocumentPicker.swift */,
-				D8AB36672A8560EA0075F39A /* ContentView.swift */,
+				D8A22D612A9D1DE600488650 /* PreviewItem.swift */,
+				D842A65F2A9E84C5007DAB40 /* PreviewItemDetails.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,8 +219,10 @@
 				D86A39DF2A8CFC2F006BE648 /* DocumentPickerViewModel.swift in Sources */,
 				D86A39DA2A8CFA79006BE648 /* SaveViewModel.swift in Sources */,
 				D8AB36762A8562090075F39A /* DocumentPicker.swift in Sources */,
+				D842A6602A9E84C5007DAB40 /* PreviewItemDetails.swift in Sources */,
 				D8ADE2012A8CF2DE00B7E3DE /* FormattedDataViewModel.swift in Sources */,
 				D8AB36682A8560EA0075F39A /* ContentView.swift in Sources */,
+				D8A22D622A9D1DE600488650 /* PreviewItem.swift in Sources */,
 				D8AB36782A8566000075F39A /* Parser.swift in Sources */,
 				D8AB36662A8560EA0075F39A /* ExhibitabilityParserApp.swift in Sources */,
 			);
