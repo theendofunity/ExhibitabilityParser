@@ -12,7 +12,7 @@ struct PreviewItem: View {
     @ObservedObject var data: FormattedData
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(data.number)
                     .font(.headline)
@@ -29,17 +29,14 @@ struct PreviewItem: View {
             
             HStack {
                 Text(data.formattedDevelopTime)
-                    .border(.black)
 
                 Spacer()
                 
                 Text(data.formattedProjectPlan)
-                    .border(.black)
                 
                 Spacer()
 
                 Text(data.formattedSpendTime)
-                    .border(.black)
             }
         }
         .padding()
