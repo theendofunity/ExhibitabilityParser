@@ -8,29 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class FormattedData: ObservableObject {
-    static var mock: FormattedData {
-        let indexes = Column.allCases.enumerated().map({ (index, column) in
-            (column, index)
-        })
-        var data: [Column : Int] = [:]
-        for index in indexes {
-            data[index.0] = index.1
-        }
-        return .init(data: ["test", "тестasdadasdasdjashdkjashdkjashdkjahdkajsdhakjsdhkasjdhkajdhakjsdhkajsdhakd","3600","3600","5h","test","test","test","test"], indexes: data)!
-    }
-    
-    static var mock2: FormattedData {
-        let indexes = Column.allCases.enumerated().map({ (index, column) in
-            (column, index)
-        })
-        var data: [Column : Int] = [:]
-        for index in indexes {
-            data[index.0] = index.1
-        }
-        return .init(data: ["test2", "тестasdadasdasdjashdkjashdkjashdkjahdkajsdhakjsdhkasjdhkajdhakjsdhkajsdhakd","3600","3600","5h","test","test","test","test"], indexes: data)!
-    }
-    
+final class FormattedData: ObservableObject {    
     enum TaskType: String, CaseIterable {
         case task = "Задача"
         case myBug = "Свой баг"
@@ -48,6 +26,16 @@ final class FormattedData: ObservableObject {
         }
     }
     
+    private let defaultDevelopTime: Float
+    private let defaultprojectPlan: Float
+    
+    private let formatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.decimalSeparator = ","
+        numberFormatter.maximumFractionDigits = 1
+        return numberFormatter
+    }()
+    
     let number: String
     let title: String
     var spendTime: Float
@@ -60,31 +48,43 @@ final class FormattedData: ObservableObject {
     
     @Published var taskType: TaskType
     
-    private let defaultDevelopTime: Float
-    private let defaultprojectPlan: Float
+    var formattedDevelopTime: String {
+        let formattedValue = formatter.string(from: NSNumber(value: developTime)) ?? ""
+        return "\("ОЧР: ")\(formattedValue)"
+    }
     
-    init?(data: [String], indexes: Indexes) {
-        guard let numberIndex = indexes[.number],
-              let titleIndex = indexes[.title],
-              let spendTimeIndex = indexes[.spendedTime],
-              let developTimeIndex = indexes[.developTime],
-              let projectPlanIndex = indexes[.projectPlan],
-              let dateIndex = indexes[.date],
-              let projectName = indexes[.project],
-              let taskType = indexes[.type] else {
+    var formattedProjectPlan: String {
+        let formattedValue = formatter.string(from: NSNumber(value: projectPlan)) ?? ""
+        return "\("ОП: ")\(formattedValue)"
+    }
+    
+    var formattedSpendTime: String {
+        let formattedValue = formatter.string(from: NSNumber(value: spendTime)) ?? ""
+        return "\("Факт: ")\(formattedValue)"
+    }
+    
+    init?(data: [String : String]) {
+        guard let numberIndex = data[Column.number.rawValue],
+              let titleIndex = data[Column.title.rawValue],
+              let spendTimeIndex = data[Column.spendedTime.rawValue],
+              let developTimeIndex = data[Column.developTime.rawValue],
+              let projectPlanIndex = data[Column.projectPlan.rawValue],
+              let dateIndex = data[Column.date.rawValue],
+              let projectName = data[Column.project.rawValue],
+              let taskType = data[Column.type.rawValue] else {
             return nil
         }
         
-        self.number = data[numberIndex]
-        self.title = data[titleIndex]
-        self.spendTime = (Float(data[spendTimeIndex]) ?? .zero) / 3600
-        self.developTime = (Float(data[developTimeIndex]) ?? .zero) / 3600
-        self.projectPlan = (Float(data[projectPlanIndex].trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
+        self.number = numberIndex
+        self.title = titleIndex
+        self.spendTime = (Float(spendTimeIndex) ?? .zero) / 3600
+        self.developTime = (Float(developTimeIndex) ?? .zero) / 3600
+        self.projectPlan = (Float(projectPlanIndex.trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
 //        self.date = data[dateIndex]
-        self.rawDate = data[dateIndex].date
+        self.rawDate = dateIndex.date
         self.link = .jiraUrl + number
-        self.projectName = data[projectName]
-        self.taskType = TaskType(rawValue: data[taskType]) ?? .strangerBug
+        self.projectName = projectName
+        self.taskType = TaskType(rawValue: taskType) ?? .strangerBug
         
         self.defaultDevelopTime = developTime
         self.defaultprojectPlan = projectPlan
@@ -104,9 +104,9 @@ final class FormattedData: ObservableObject {
         array.append(taskType.rawValue.lowercased())
         array.append(title)
         array.append(link)
-        array.append(numberFormatter.string(from: NSNumber(value: developTime)) ?? "")
-        array.append(numberFormatter.string(from: NSNumber(value: projectPlan)) ?? "")
-        array.append(numberFormatter.string(from:  NSNumber(value: spendTime)) ?? "")
+        array.append(formatter.string(from: NSNumber(value: developTime)) ?? "")
+        array.append(formatter.string(from: NSNumber(value: projectPlan)) ?? "")
+        array.append(formatter.string(from:  NSNumber(value: spendTime)) ?? "")
 
         return array.joined(separator: ";")
     }

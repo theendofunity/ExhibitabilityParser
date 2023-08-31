@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias Indexes = [Column: Int]
-
 enum Column: String, CaseIterable {
     case number = "Ключ проблемы"
     case title = "Тема"
