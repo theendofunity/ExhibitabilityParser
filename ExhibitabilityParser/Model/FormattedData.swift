@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 final class FormattedData: ObservableObject {
-    static var skipped = 0
     static var mock: FormattedData {
         let indexes = Column.allCases.enumerated().map({ (index, column) in
             (column, index)
@@ -58,7 +57,11 @@ final class FormattedData: ObservableObject {
     let rawDate: Date
     let link: String
     let projectName: String
+    
     @Published var taskType: TaskType
+    
+    private let defaultDevelopTime: Float
+    private let defaultprojectPlan: Float
     
     init?(data: [String], indexes: Indexes) {
         guard let numberIndex = indexes[.number],
@@ -83,9 +86,10 @@ final class FormattedData: ObservableObject {
         self.projectName = data[projectName]
         self.taskType = TaskType(rawValue: data[taskType]) ?? .strangerBug
         
+        self.defaultDevelopTime = developTime
+        self.defaultprojectPlan = projectPlan
+        
         guard spendTime != .zero else {
-            FormattedData.skipped += 1
-            print("skipped", FormattedData.skipped, title, developTime, projectPlan, spendTime)
             return nil
         }
     }
@@ -109,6 +113,20 @@ final class FormattedData: ObservableObject {
     
     func updateTaskType(_ type: TaskType) {
         taskType = type
+        
+        switch taskType {
+        case .task:
+            developTime = defaultDevelopTime
+            projectPlan = defaultprojectPlan
+            
+        case .myBug:
+            developTime = .zero
+            projectPlan = .zero
+            
+        case .strangerBug:
+            developTime = spendTime
+            projectPlan = spendTime
+        }
     }
 }
 

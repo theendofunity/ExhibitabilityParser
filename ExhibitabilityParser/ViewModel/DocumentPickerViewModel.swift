@@ -10,6 +10,7 @@ import UIKit
 
 final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate, ObservableObject {
     @Published var dataParsed = false
+    @Published var error = false
     var data: FormattedDataViewModel?
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -18,7 +19,12 @@ final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate, Observa
         }
         
         let data = Parser().parse(file: url)
-        save(data: data)
+        
+        if data.isEmpty {
+            error = true
+        } else {
+            save(data: data)
+        }
     }
     
     func save(data: [FormattedData]) {

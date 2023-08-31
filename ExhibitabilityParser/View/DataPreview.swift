@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct DataPreview: View {
-    @ObservedObject var data: FormattedDataViewModel?
+    @ObservedObject var data: FormattedDataViewModel
     @ObservedObject private var saveViewModel = SaveViewModel()
     
-    init(data: FormattedDataViewModel?) {
+    init(data: FormattedDataViewModel) {
         self.data = data
     }
     
     var body: some View {
-        if let data, !data.data.isEmpty {
+        if !data.data.isEmpty {
             VStack {
                 List {
                     ForEach(data.data, id: \.self) {

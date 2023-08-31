@@ -22,9 +22,13 @@ struct ContentView: View {
         .sheet(isPresented: $showingPicker) {
             DocumentPicker(viewModel: pickerViewModel)
         }
-        
         .sheet(isPresented: $pickerViewModel.dataParsed) {
-            DataPreview(data: pickerViewModel.data)
+            if let data = pickerViewModel.data {
+                DataPreview(data: data)
+            }
+        }
+        .alert("Error", isPresented: $pickerViewModel.error) {
+            Button("OK", role: .cancel) {}
         }
     }
 }
