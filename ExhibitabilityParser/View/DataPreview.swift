@@ -52,11 +52,11 @@ struct DataPreview: View {
     }
 }
 
-struct DataPreview_Previews: PreviewProvider {
-    static var previews: some View {
-        DataPreview(data: .init(data: [FormattedData.mock, FormattedData.mock2]))
-    }
-}
+//struct DataPreview_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DataPreview(data: .init(data: [FormattedData.mock, FormattedData.mock2]))
+//    }
+//}
 
 private extension View {
   func showShareSheet(with activityItems: [Any]) {

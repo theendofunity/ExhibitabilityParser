@@ -62,8 +62,8 @@ struct PreviewItemDetails: View {
     }
 }
 
-struct PreviewItemDetails_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewItemDetails(data: FormattedData.mock)
-    }
-}
+//struct PreviewItemDetails_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PreviewItemDetails(data: FormattedData.mock)
+//    }
+//}

@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Button("Start") {
+            Button("Select file") {
                 showingPicker = true
             }
             .padding()

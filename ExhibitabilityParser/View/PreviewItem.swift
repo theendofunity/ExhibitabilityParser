@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PreviewItem: View {
     @State private var showPeecker = false
-    
     @ObservedObject var data: FormattedData
     
     var body: some View {
@@ -19,6 +18,8 @@ struct PreviewItem: View {
                     .font(.headline)
                 Spacer()
                 Text(data.taskType.rawValue)
+                    .padding()
+                    .frame(height: 30)
                     .background(data.taskType.color)
                     .cornerRadius(16)
                     .foregroundColor(.white)
@@ -27,17 +28,17 @@ struct PreviewItem: View {
             Text(data.title)
             
             HStack {
-                Text("\("ОЧР: ")\(data.developTime)")
+                Text(data.formattedDevelopTime)
                     .border(.black)
 
                 Spacer()
                 
-                Text("\("ОП: ")\(data.projectPlan)")
+                Text(data.formattedProjectPlan)
                     .border(.black)
                 
                 Spacer()
 
-                Text("\("Факт: ")\(data.spendTime)")
+                Text(data.formattedSpendTime)
                     .border(.black)
             }
         }
@@ -57,8 +58,8 @@ struct PreviewItem: View {
     }
 }
 
-struct PreviewItem_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewItem(data: FormattedData.mock)
-    }
-}
+//struct PreviewItem_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PreviewItem(data: FormattedData.mock)
+//    }
+//}
