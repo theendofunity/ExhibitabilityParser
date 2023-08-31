@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DataPreview: View {
-    let data: FormattedDataViewModel?
+    @ObservedObject var data: FormattedDataViewModel?
     @ObservedObject private var saveViewModel = SaveViewModel()
     
     init(data: FormattedDataViewModel?) {
@@ -16,37 +16,49 @@ struct DataPreview: View {
     }
     
     var body: some View {
-        let data = data?.output() ?? "no data"
-        VStack {
-            Text(verbatim: data)
-                .padding(.vertical)
-            Spacer()
-            Button("Save") {
-                saveViewModel.save(data: data)
+        if let data, !data.data.isEmpty {
+            VStack {
+                List {
+                    ForEach(data.data, id: \.self) {
+                        PreviewItem(data: $0)
+                            .background(.clear)
+                    }
+                    .onDelete { index in
+                        data.remove(at: index)
+                    }
+                }
+                
+                Spacer()
+                
+                Button("Save") {
+                    saveViewModel.save(data: data.output())
+                }
+                
             }
-        }
-        
-        .alert("Document saved", isPresented: $saveViewModel.isSaved) {
-            Button("Share") {
-                showShareSheet(with: [saveViewModel.fileUrl])
-            }
-            Button("Close", role: .cancel) {}
-        } message: {
-            Text(verbatim: "path: \(String(describing: saveViewModel.fileUrl?.absoluteString))")
-        }
+            .background(.clear)
 
+            .alert("Document saved", isPresented: $saveViewModel.isSaved) {
+                Button("Share") {
+                    showShareSheet(with: [saveViewModel.fileUrl as Any])
+                }
+                Button("Close", role: .cancel) {}
+            } message: {
+                Text(verbatim: "path: \(String(describing: saveViewModel.fileUrl?.absoluteString))")
+            }
+            .background(.clear)
+        } else {
+            Text("No data")
+        }
     }
 }
 
 struct DataPreview_Previews: PreviewProvider {
     static var previews: some View {
-        DataPreview(data: .init(data: []))
+        DataPreview(data: .init(data: [FormattedData.mock, FormattedData.mock2]))
     }
 }
 
 private extension View {
-  /// Show the classic Apple share sheet on iPhone and iPad.
-  ///
   func showShareSheet(with activityItems: [Any]) {
     guard let source = UIApplication.shared.windows.last?.rootViewController else {
       return

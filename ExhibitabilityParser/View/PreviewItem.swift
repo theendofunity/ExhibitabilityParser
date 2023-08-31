@@ -13,7 +13,7 @@ struct PreviewItem: View {
     @ObservedObject var data: FormattedData
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: 8) {
             HStack {
                 Text(data.number)
                     .font(.headline)
@@ -41,9 +41,13 @@ struct PreviewItem: View {
                     .border(.black)
             }
         }
-        .border(.black)
-        .cornerRadius(16)
         .padding()
+        .background(.clear)
+        .cornerRadius(16)
+        .overlay {
+            RoundedRectangle(cornerRadius: 16)
+                .stroke()
+        }
         .onTapGesture {
             showPeecker = true
         }

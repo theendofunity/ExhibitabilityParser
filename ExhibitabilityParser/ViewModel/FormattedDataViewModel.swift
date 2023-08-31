@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class FormattedDataViewModel {
-    var data: [FormattedData] = []
+final class FormattedDataViewModel: ObservableObject {
+    @Published var data: [FormattedData] = []
     
     init(data: [FormattedData]) {
         self.data = data
@@ -19,5 +19,9 @@ final class FormattedDataViewModel {
         let rows = data.map { $0.getString() }.joined(separator: "\n")
         
         return header + rows
+    }
+    
+    func remove(at index: IndexSet) {
+        data.remove(atOffsets: index)
     }
 }

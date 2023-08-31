@@ -18,7 +18,18 @@ final class FormattedData: ObservableObject {
         for index in indexes {
             data[index.0] = index.1
         }
-        return .init(data: ["тест", "тестasdadasdasdjashdkjashdkjashdkjahdkajsdhakjsdhkasjdhkajdhakjsdhkajsdhakd","3600","3600","5h","тест","тест","тест","тест"], indexes: data)!
+        return .init(data: ["test", "тестasdadasdasdjashdkjashdkjashdkjahdkajsdhakjsdhkasjdhkajdhakjsdhkajsdhakd","3600","3600","5h","test","test","test","test"], indexes: data)!
+    }
+    
+    static var mock2: FormattedData {
+        let indexes = Column.allCases.enumerated().map({ (index, column) in
+            (column, index)
+        })
+        var data: [Column : Int] = [:]
+        for index in indexes {
+            data[index.0] = index.1
+        }
+        return .init(data: ["test2", "тестasdadasdasdjashdkjashdkjashdkjahdkajsdhakjsdhkasjdhkajdhakjsdhkajsdhakd","3600","3600","5h","test","test","test","test"], indexes: data)!
     }
     
     enum TaskType: String, CaseIterable {
@@ -98,6 +109,16 @@ final class FormattedData: ObservableObject {
     
     func updateTaskType(_ type: TaskType) {
         taskType = type
+    }
+}
+
+extension FormattedData: Hashable {
+    static func == (lhs: FormattedData, rhs: FormattedData) -> Bool {
+        lhs.number == rhs.number
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(number)
     }
 }
 

@@ -17,6 +17,18 @@ struct PreviewItemDetails: View {
     var body: some View {
         NavigationView {
             VStack {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(data.title)
+                    Text(data.link)
+                        .onTapGesture {
+                            guard let url = URL(string: data.link) else {
+                                return
+                            }
+                            UIApplication.shared.open(url)
+                        }
+                }
+                .padding()
+                
                 Picker("Тип задачи", selection: $selectedTaskType) {
                     ForEach(FormattedData.TaskType.allCases, id: \.self) {
                         Text($0.rawValue)
@@ -24,10 +36,13 @@ struct PreviewItemDetails: View {
                 }
                 .pickerStyle(.wheel)
                 
+                Spacer()
+                
                 Button("Save") {
                     data.updateTaskType(selectedTaskType)
                     dismiss()
                 }
+                .padding()
             }
             .toolbar {
                 Button {
