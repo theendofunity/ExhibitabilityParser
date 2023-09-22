@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D827827E2ABDD2B90039D0BC /* AnaliticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D827827D2ABDD2B90039D0BC /* AnaliticsView.swift */; };
+		D82782802ABDD2F20039D0BC /* AnaliticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D827827F2ABDD2F20039D0BC /* AnaliticsViewModel.swift */; };
+		D82782822ABDD4660039D0BC /* AnaliticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82782812ABDD4660039D0BC /* AnaliticsService.swift */; };
 		D842A6602A9E84C5007DAB40 /* PreviewItemDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D842A65F2A9E84C5007DAB40 /* PreviewItemDetails.swift */; };
 		D86A39DA2A8CFA79006BE648 /* SaveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */; };
 		D86A39DF2A8CFC2F006BE648 /* DocumentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A39DE2A8CFC2F006BE648 /* DocumentPickerViewModel.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D827827D2ABDD2B90039D0BC /* AnaliticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaliticsView.swift; sourceTree = "<group>"; };
+		D827827F2ABDD2F20039D0BC /* AnaliticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaliticsViewModel.swift; sourceTree = "<group>"; };
+		D82782812ABDD4660039D0BC /* AnaliticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaliticsService.swift; sourceTree = "<group>"; };
 		D842A65F2A9E84C5007DAB40 /* PreviewItemDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewItemDetails.swift; sourceTree = "<group>"; };
 		D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewModel.swift; sourceTree = "<group>"; };
 		D86A39DE2A8CFC2F006BE648 /* DocumentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewModel.swift; sourceTree = "<group>"; };
@@ -67,6 +73,7 @@
 				D8D8A0542A8BE1840077AC1E /* DataPreview.swift */,
 				D8A22D612A9D1DE600488650 /* PreviewItem.swift */,
 				D842A65F2A9E84C5007DAB40 /* PreviewItemDetails.swift */,
+				D827827D2ABDD2B90039D0BC /* AnaliticsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -77,6 +84,7 @@
 				D8ADE2002A8CF2DE00B7E3DE /* FormattedDataViewModel.swift */,
 				D86A39D92A8CFA79006BE648 /* SaveViewModel.swift */,
 				D86A39DE2A8CFC2F006BE648 /* DocumentPickerViewModel.swift */,
+				D827827F2ABDD2F20039D0BC /* AnaliticsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -85,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				D8AB36772A8566000075F39A /* Parser.swift */,
+				D82782812ABDD4660039D0BC /* AnaliticsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -226,15 +235,18 @@
 				D86A39E22A8CFC6D006BE648 /* FormattedData.swift in Sources */,
 				D8FA9A1F2A8E4A99004CC48F /* String+Extension.swift in Sources */,
 				D86A39E42A8CFC8F006BE648 /* Column.swift in Sources */,
+				D827827E2ABDD2B90039D0BC /* AnaliticsView.swift in Sources */,
 				D8D8A0552A8BE1840077AC1E /* DataPreview.swift in Sources */,
 				D86A39DF2A8CFC2F006BE648 /* DocumentPickerViewModel.swift in Sources */,
 				D86A39DA2A8CFA79006BE648 /* SaveViewModel.swift in Sources */,
+				D82782802ABDD2F20039D0BC /* AnaliticsViewModel.swift in Sources */,
 				D8AB36762A8562090075F39A /* DocumentPicker.swift in Sources */,
 				D842A6602A9E84C5007DAB40 /* PreviewItemDetails.swift in Sources */,
 				D8ADE2012A8CF2DE00B7E3DE /* FormattedDataViewModel.swift in Sources */,
 				D8AB36682A8560EA0075F39A /* ContentView.swift in Sources */,
 				D8D926F82AA115A3005777AA /* String+Constants.swift in Sources */,
 				D8A22D622A9D1DE600488650 /* PreviewItem.swift in Sources */,
+				D82782822ABDD4660039D0BC /* AnaliticsService.swift in Sources */,
 				D8AB36782A8566000075F39A /* Parser.swift in Sources */,
 				D8AB36662A8560EA0075F39A /* ExhibitabilityParserApp.swift in Sources */,
 			);
