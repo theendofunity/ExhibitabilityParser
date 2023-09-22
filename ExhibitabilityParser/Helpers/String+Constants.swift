@@ -10,4 +10,5 @@ import Foundation
 extension String {
     static let rowSeparator: String = "\n"
     static let columnSeparator: String = ";"
+    static let dateSeparator: String = "/"
 }

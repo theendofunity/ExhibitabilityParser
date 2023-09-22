@@ -27,6 +27,8 @@ struct PreviewItem: View {
             
             Text(data.title)
             
+            Text(data.date.formattedDate)
+            
             HStack {
                 Text(data.formattedDevelopTime)
 

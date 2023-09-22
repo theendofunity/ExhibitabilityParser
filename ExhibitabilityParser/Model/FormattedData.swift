@@ -41,8 +41,7 @@ final class FormattedData: ObservableObject {
     var spendTime: Float
     var developTime: Float
     var projectPlan: Float
-//    let date: String
-    let rawDate: Date
+    let date: String
     let link: String
     let projectName: String
     
@@ -80,8 +79,8 @@ final class FormattedData: ObservableObject {
         self.spendTime = (Float(spendTimeIndex) ?? .zero) / 3600
         self.developTime = (Float(developTimeIndex) ?? .zero) / 3600
         self.projectPlan = (Float(projectPlanIndex.trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
-//        self.date = data[dateIndex]
-        self.rawDate = dateIndex.date
+        self.date = dateIndex
+        
         self.link = .jiraUrl + number
         self.projectName = projectName
         self.taskType = TaskType(rawValue: taskType) ?? .strangerBug
@@ -99,7 +98,7 @@ final class FormattedData: ObservableObject {
         let numberFormatter = NumberFormatter()
         numberFormatter.decimalSeparator = ","
         
-        array.append("2023")
+        array.append(date.formattedDate)
         array.append(projectName)
         array.append(taskType.rawValue.lowercased())
         array.append(title)
