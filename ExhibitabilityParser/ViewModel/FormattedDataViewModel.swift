@@ -10,6 +10,10 @@ import Foundation
 final class FormattedDataViewModel: ObservableObject {
     @Published var data: [FormattedData] = []
     
+    var analiticsViewModel: AnaliticsViewModel {
+        .init(data: data)
+    }
+    
     init(data: [FormattedData]) {
         self.data = data
     }

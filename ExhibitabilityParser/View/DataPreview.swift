@@ -10,6 +10,7 @@ import SwiftUI
 struct DataPreview: View {
     @ObservedObject var data: FormattedDataViewModel
     @ObservedObject private var saveViewModel = SaveViewModel()
+    @State var isAnalitics: Bool = false
     
     init(data: FormattedDataViewModel) {
         self.data = data
@@ -30,8 +31,14 @@ struct DataPreview: View {
                 
                 Spacer()
                 
-                Button("Save") {
-                    saveViewModel.save(data: data.output())
+                HStack {
+                    Button("Save") {
+                        saveViewModel.save(data: data.output())
+                    }
+                    
+                    Button("Analitics") {
+                        isAnalitics = true
+                    }
                 }
                 
             }
@@ -45,6 +52,10 @@ struct DataPreview: View {
             } message: {
                 Text(verbatim: "path: \(String(describing: saveViewModel.fileUrl?.absoluteString))")
             }
+            
+            .sheet(isPresented: $isAnalitics, content: {
+                AnaliticsView(viewModel: data.analiticsViewModel)
+            })
             .background(.clear)
         } else {
             Text("No data")
