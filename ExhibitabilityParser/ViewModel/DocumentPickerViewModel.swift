@@ -28,7 +28,7 @@ final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate, Observa
             return
         }
         
-        let data = Parser().parse(file: url, inputType: inputType)
+        let data = Parser().parse(file: url, inputType: inputType).sorted(by: <)
         
         if data.isEmpty {
             error = true

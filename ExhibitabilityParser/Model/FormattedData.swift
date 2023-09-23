@@ -184,6 +184,16 @@ extension FormattedData: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(number)
     }
+    
+    static func < (lhs: FormattedData, rhs: FormattedData) -> Bool {
+        let type = lhs.inputType
+        
+        if type == .tasks {
+            return false
+        } else {
+            return lhs.date < rhs.date
+        }
+    }
 }
 
 private extension String {
