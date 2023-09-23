@@ -13,12 +13,22 @@ extension String {
             .dropLast()
             .joined()
             .components(separatedBy: String.dateSeparator)
-        
-        components.removeFirst()
-        
-        guard let month = components.first, let year = components.last else {
-            return ""
+
+        if components.count > 1 {
+            components.removeFirst()
+            
+            guard let month = components.first, let year = components.last else {
+                return ""
+            }
+            return "\(month) \(year)"
+        } else {
+            var dashComponents = components.joined(separator: "").components(separatedBy: String.dash)
+            dashComponents.removeLast()
+            
+            guard let month = dashComponents.last, let year = dashComponents.first else {
+                return ""
+            }
+            return "\(month) \(year)"
         }
-        return "\(month) \(year)"
     }
 }

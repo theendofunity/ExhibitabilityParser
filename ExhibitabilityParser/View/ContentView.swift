@@ -9,15 +9,30 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showingPicker = false
-    @ObservedObject private var pickerViewModel = DocumentPickerViewModel()
+    @State var inputType: InputType = .tasks
+    @ObservedObject private var pickerViewModel = DocumentPickerViewModel(inputType: .tasks)
     
     var body: some View {
         VStack {
+            Picker("Input type ", selection: $inputType) {
+                ForEach(InputType.allCases, id: \.self) { item in
+                    Text(item.rawValue.capitalized)
+                }
+            }
+            .onReceive([self.inputType].publisher.first()) { value in
+                pickerViewModel.inputType = value
+             }
+            .pickerStyle(.segmented)
+            
+            Spacer()
+            
             Button("Select file") {
                 showingPicker = true
             }
             .padding()
             .buttonStyle(.bordered)
+            
+            Spacer()
         }
         .sheet(isPresented: $showingPicker) {
             DocumentPicker(viewModel: pickerViewModel)

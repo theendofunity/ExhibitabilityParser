@@ -11,12 +11,13 @@ import SwiftUI
 final class FormattedData: ObservableObject {    
     enum TaskType: String, CaseIterable {
         case task = "Задача"
+        case taskTempo = "Task"
         case myBug = "Свой баг"
         case strangerBug = "Чужой баг"
         
         var color: Color {
             switch self {
-            case .task:
+            case .task, .taskTempo:
                 return .blue
             case .strangerBug:
                 return .yellow
@@ -28,6 +29,7 @@ final class FormattedData: ObservableObject {
     
     private let defaultDevelopTime: Float
     private let defaultprojectPlan: Float
+    private let inputType: InputType
     
     private let formatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -62,33 +64,77 @@ final class FormattedData: ObservableObject {
         return "\("Факт: ")\(formattedValue)"
     }
     
-    init?(data: [String : String]) {
-        guard let numberIndex = data[Column.number.rawValue],
-              let titleIndex = data[Column.title.rawValue],
-              let spendTimeIndex = data[Column.spendedTime.rawValue],
-              let developTimeIndex = data[Column.developTime.rawValue],
-              let projectPlanIndex = data[Column.projectPlan.rawValue],
-              let dateIndex = data[Column.date.rawValue],
-              let projectName = data[Column.project.rawValue],
-              let taskType = data[Column.type.rawValue] else {
+    init?(data: [String : String], inputType: InputType) {
+        self.inputType = inputType
+        
+        if inputType == .tasks {
+            guard let numberIndex = data[Column.number.rawValue],
+                  let titleIndex = data[Column.title.rawValue],
+                  let spendTimeIndex = data[Column.spendedTime.rawValue],
+                  let developTimeIndex = data[Column.developTime.rawValue],
+                  let projectPlanIndex = data[Column.projectPlan.rawValue],
+                  let dateIndex = data[Column.date.rawValue],
+                  let projectName = data[Column.project.rawValue],
+                  let taskType = data[Column.type.rawValue] else {
+                return nil
+            }
+            
+            self.number = numberIndex
+            self.title = titleIndex
+            self.spendTime = (Float(spendTimeIndex) ?? .zero) / 3600
+            self.developTime = (Float(developTimeIndex) ?? .zero) / 3600
+            self.projectPlan = (Float(projectPlanIndex.trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
+            self.date = dateIndex
+            
+            self.link = .jiraUrl + number
+            self.projectName = projectName
+            self.taskType = TaskType(rawValue: taskType) ?? .strangerBug
+            
+            self.defaultDevelopTime = developTime
+            self.defaultprojectPlan = projectPlan
+        } else {
+            guard let numberIndex = data[Column.numberTempo.rawValue],
+                  let titleIndex = data[Column.titleTempo.rawValue],
+                  let spendTimeIndex = data[Column.spendedTimeTempo.rawValue],
+                  let developTimeIndex = data[Column.developTimeTempo.rawValue],
+                  let dateIndex = data[Column.dateTempo.rawValue],
+                  let projectName = data[Column.projectTempo.rawValue],
+                  let taskType = data[Column.typeTempo.rawValue] else {
+                return nil
+            }
+            
+            self.number = numberIndex
+            self.title = titleIndex
+            self.spendTime = (Float(spendTimeIndex) ?? .zero)
+            self.developTime = (Float(developTimeIndex) ?? .zero)
+            self.projectPlan = (developTime * 1.4).rounded(.up)
+            
+            self.date = dateIndex
+            let testDate = DateFormatter().date(from: dateIndex)
+            
+            self.link = .jiraUrl + number
+            self.projectName = projectName
+            
+            self.defaultDevelopTime = developTime
+            self.defaultprojectPlan = projectPlan
+            
+            self.taskType = TaskType(rawValue: taskType) ?? .strangerBug
+            
+            if self.taskType == .taskTempo {
+                self.taskType = .task
+            }
+        }
+        guard spendTime != .zero else {
             return nil
         }
         
-        self.number = numberIndex
-        self.title = titleIndex
-        self.spendTime = (Float(spendTimeIndex) ?? .zero) / 3600
-        self.developTime = (Float(developTimeIndex) ?? .zero) / 3600
-        self.projectPlan = (Float(projectPlanIndex.trimmingCharacters(in: .controlCharacters).dropLast())) ?? spendTime
-        self.date = dateIndex
+        updateTaskType(taskType)
         
-        self.link = .jiraUrl + number
-        self.projectName = projectName
-        self.taskType = TaskType(rawValue: taskType) ?? .strangerBug
+        if date.contains("янв") || date.contains("фев") || date.contains("мар") || date.contains("сен") {
+            return nil
+        }
         
-        self.defaultDevelopTime = developTime
-        self.defaultprojectPlan = projectPlan
-        
-        guard spendTime != .zero else {
+        if projectName == .internalProject {
             return nil
         }
     }
@@ -106,7 +152,7 @@ final class FormattedData: ObservableObject {
         array.append(formatter.string(from: NSNumber(value: developTime)) ?? "")
         array.append(formatter.string(from: NSNumber(value: projectPlan)) ?? "")
         array.append(formatter.string(from:  NSNumber(value: spendTime)) ?? "")
-
+        
         return array.joined(separator: ";")
     }
     
@@ -114,9 +160,9 @@ final class FormattedData: ObservableObject {
         taskType = type
         
         switch taskType {
-        case .task:
+        case .task, .taskTempo:
             developTime = defaultDevelopTime
-            projectPlan = defaultprojectPlan
+            projectPlan = inputType == .tasks ? defaultprojectPlan : (developTime * 1.4).rounded(.up)
             
         case .myBug:
             developTime = .zero
@@ -126,6 +172,10 @@ final class FormattedData: ObservableObject {
             developTime = spendTime
             projectPlan = spendTime
         }
+    }
+    
+    func addSpendTime(_ time: Float) {
+        spendTime += time
     }
 }
 
