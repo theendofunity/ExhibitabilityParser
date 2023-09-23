@@ -110,7 +110,6 @@ final class FormattedData: ObservableObject {
             self.projectPlan = (developTime * 1.4).rounded(.up)
             
             self.date = dateIndex
-            let testDate = DateFormatter().date(from: dateIndex)
             
             self.link = .jiraUrl + number
             self.projectName = projectName
@@ -129,10 +128,6 @@ final class FormattedData: ObservableObject {
         }
         
         updateTaskType(taskType)
-        
-        if date.contains("янв") || date.contains("фев") || date.contains("мар") || date.contains("сен") {
-            return nil
-        }
         
         if projectName == .internalProject {
             return nil
@@ -176,6 +171,8 @@ final class FormattedData: ObservableObject {
     
     func addSpendTime(_ time: Float) {
         spendTime += time
+        
+        updateTaskType(taskType)
     }
 }
 
