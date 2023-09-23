@@ -27,6 +27,7 @@ final class AnaliticsService {
         let koef = totalProjectTime / totalSpendTime
         
         var analitics: [String] = [
+            "Всего задач \(data.count)",
             "ОЧР: \(totalDevelopTime)",
             "ОП: \(totalProjectTime)",
             "Факт: \(totalSpendTime)",

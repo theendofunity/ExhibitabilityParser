@@ -32,13 +32,19 @@ struct DataPreview: View {
                 Spacer()
                 
                 HStack {
+                    Spacer()
+                    
                     Button("Save") {
                         saveViewModel.save(data: data.output())
                     }
                     
+                    Spacer()
+                    
                     Button("Analitics") {
                         isAnalitics = true
                     }
+                    
+                    Spacer()
                 }
                 
             }

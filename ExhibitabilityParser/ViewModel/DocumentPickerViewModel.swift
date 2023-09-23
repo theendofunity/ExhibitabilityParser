@@ -7,18 +7,28 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 final class DocumentPickerViewModel: NSObject, UIDocumentPickerDelegate, ObservableObject {
+    var inputType: InputType
+    
     @Published var dataParsed = false
     @Published var error = false
     var data: FormattedDataViewModel?
+    
+    init(inputType: InputType, dataParsed: Bool = false, error: Bool = false, data: FormattedDataViewModel? = nil) {
+        self.inputType = inputType
+        self.dataParsed = dataParsed
+        self.error = error
+        self.data = data
+    }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let url = urls.first else {
             return
         }
         
-        let data = Parser().parse(file: url)
+        let data = Parser().parse(file: url, inputType: inputType)
         
         if data.isEmpty {
             error = true
